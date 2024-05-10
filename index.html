@@ -14,7 +14,10 @@
 
 <body>
     <div id="calculator">
-        <h1>Calculator</h1>
+        <h1>
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-calculator" viewBox="0 0 16 16"><path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/><path d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z"/></svg>
+            CALCULATOR
+        </h1>
         <p id="last_operation_history"></p>
         <p id="box" class="box">0</p>
         <table id="table">
@@ -23,6 +26,7 @@
                 <td><button onclick="clear_entry()">CE</button></td>
                 <td><button onclick="button_clear()">C</button></td>
                 <td><button id="backspace_btn" onclick="backspace_remove()">DEL</button></td>
+                <td><button onclick="ABS()">Abs</button></td>
             </tr>
             <tr>
                 <td><button onclick="division_one()">¹∕ₓ</button></td>
@@ -49,9 +53,9 @@
                 <td><button id="divOp" value="/" class="operator" onclick="button_number('/')">÷</button></td>
             </tr>
             <tr>
-                <td><button onclick="plus_minus()">±</button></td>
                 <td><button onclick="button_number(0)">0</button></td>
                 <td><button id="dot" value="." onclick="button_number('.')">.</button></td>
+                <td><button onclick="plus_minus()">±</button></td>       
                 <td colspan="4"><button value="=" class="operator" id="equal_sign"
                         onclick="button_number('=')">=</button></td>
             </tr>

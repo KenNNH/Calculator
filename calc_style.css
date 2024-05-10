@@ -3,7 +3,7 @@ body {
     top: 15%;
     left: 40%;
     margin: 0 auto;
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     font-family: 'Roboto', sans-serif;
 }
 
@@ -82,4 +82,8 @@ button:hover {
 #equal_sign {
     width: 100%;
     border-radius: 15px;
+}
+
+.bi.bi-calculator{
+    margin-bottom: -7px;
 }

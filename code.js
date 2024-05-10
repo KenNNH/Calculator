@@ -435,3 +435,10 @@ function keyReleased(e){
         document.getElementById("backspace_btn").style.backgroundColor  = "#666666";
     }
 }
+
+function Abs(){
+    box = document.getElementById("box");
+    var currentValue = parseFloat(box.innerText);
+    var absoluteValue = Math.abs(currentValue);
+    box.innerText = absoluteValue;
+}

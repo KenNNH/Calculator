@@ -15,11 +15,19 @@
 <body>
     <div id="calculator">
         <h1>
-            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-calculator" viewBox="0 0 16 16"><path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/><path d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-calculator"
+                viewBox="0 0 16 16">
+                <path
+                    d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
+                <path
+                    d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
+            </svg>
             CALCULATOR
         </h1>
-        <p id="last_operation_history"></p>
+        <p id="last_operation_history">Lịch sử</p>
+        <ul id="history"></ul>
         <p id="box" class="box">0</p>
+
         <table id="table">
             <tr>
                 <td><button onclick="calculate_percentage()">%</button></td>
@@ -33,29 +41,33 @@
                 <td><button onclick="power_of()">𝑥²</button></td>
                 <td><button onclick="square_root()">√𝑥</button></td>
                 <td><button id="plusOp" value="+" class="operator" onclick="button_number('+')">+</button></td>
+                <td><button onclick="memoryPlus()" id="memoryDisplay">M+</button></td>
             </tr>
             <tr>
                 <td><button onclick="button_number(7)">7</button></td>
                 <td><button onclick="button_number(8)">8</button></td>
                 <td><button onclick="button_number(9)">9</button></td>
                 <td><button id="subOp" value="-" class="operator" onclick="button_number('-')">-</button></td>
+                <td><button onclick="memoryMinus()" id="memoryDisplay">M-</button></td>
             </tr>
             <tr>
                 <td><button onclick="button_number(4)">4</button></td>
                 <td><button onclick="button_number(5)">5</button></td>
                 <td><button onclick="button_number(6)">6</button></td>
                 <td><button id="multiOp" value="*" class="operator" onclick="button_number('*')">×</button></td>
+                <td><button onclick="memoryRecall()">MR</button></td>
             </tr>
             <tr>
                 <td><button onclick="button_number(1)">1</button></td>
                 <td><button onclick="button_number(2)">2</button></td>
                 <td><button onclick="button_number(3)">3</button></td>
                 <td><button id="divOp" value="/" class="operator" onclick="button_number('/')">÷</button></td>
+                <td><button onclick="clearMemory()" id="memoryDisplay">MC</button></td>
             </tr>
             <tr>
                 <td><button onclick="button_number(0)">0</button></td>
                 <td><button id="dot" value="." onclick="button_number('.')">.</button></td>
-                <td><button onclick="plus_minus()">±</button></td>       
+                <td><button onclick="plus_minus()">±</button></td>
                 <td colspan="4"><button value="=" class="operator" id="equal_sign"
                         onclick="button_number('=')">=</button></td>
             </tr>

@@ -19,7 +19,7 @@ var key_combination = []
 function button_number(button) {
 
     operator = document.getElementsByClassName("operator");
-    box = document.getElementById("box");
+    let box = document.getElementById("box");
     last_operation_history = document.getElementById("last_operation_history");
     equal = document.getElementById("equal_sign").value;
     dot = document.getElementById("dot").value;
@@ -41,7 +41,10 @@ function button_number(button) {
             firstNum = false;
         }
         else {
-
+            if (button == '(' || button == ')') {
+                box.innerText += button;
+                return;
+            }
             // return if the box value is 0
             if (box.innerText.length == 1 && box.innerText == 0) {
 

@@ -187,33 +187,32 @@ function showSelectedOperator() {
 
 // function to calculate the result using two number and an operator
 function calculate(num1, num2, operator) {
-
+    let total;
     if (operator === "+") {
-        total = (parseFloat)(num1) + (parseFloat)(num2)
+        total = parseFloat(num1) + parseFloat(num2);
+    } else if (operator === "-") {
+        total = parseFloat(num1) - parseFloat(num2);
+    } else if (operator === "*") {
+        total = parseFloat(num1) * parseFloat(num2);
+    } else if (operator === "/") {
+        total = parseFloat(num1) / parseFloat(num2);
     }
-    else if (operator === "-") {
-        total = (parseFloat)(num1) - (parseFloat)(num2)
-    }
-    else if (operator === "*") {
-        total = (parseFloat)(num1) * (parseFloat)(num2)
-    }
-    else if (operator === "/") {
-        total = (parseFloat)(num1) / (parseFloat)(num2)
-    }
-    else {
-        if (total == box.innerText) {
-            return total
-        }
-        else {
-            return box.innerText
-        }
-    }
+
+    // Lưu lịch sử
+    let input = `${num1} ${operator} ${num2}`;
+    let result = total;
+    history.push(`${input} = ${result}`);
+    updateHistory();
+
     // if total is not integer, show maximum 12 decimal places
     if (!Number.isInteger(total)) {
         total = total.toPrecision(12);
     }
+    
+    document.getElementById('box').innerText = total;
     return parseFloat(total);
 }
+
 
 // function to clear box and reset everything
 function button_clear() {
@@ -495,6 +494,23 @@ function clearMemory() {
     document.getElementById('memoryDisplay').innerText = memory;
     console.log("Memory cleared."); // Ghi log khi chức năng MC được gọi
 }
+let history = [];
+
+function updateHistory() {
+    const historyList = document.getElementById('history_list');
+    historyList.innerHTML = '';
+    
+
+    for (let i = history.length - 1; i >= 0; i--) {
+        // document.getElementById('equal_sign').addEventListener('click', calculate);
+        let listItem = document.createElement('li');
+        listItem.textContent = history[i];
+        historyList.appendChild(listItem);
+        console.log(listItem);
+        
+    }
+}
+
 
 
 

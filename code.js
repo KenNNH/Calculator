@@ -19,13 +19,18 @@ var key_combination = []
 function button_number(button) {
 
     operator = document.getElementsByClassName("operator");
-    let box = document.getElementById("box");
+    box = document.getElementById("box");
     last_operation_history = document.getElementById("last_operation_history");
     equal = document.getElementById("equal_sign").value;
     dot = document.getElementById("dot").value;
 
     last_button = button;
 
+    if (button == '(' || button == ')') {
+        box.innerText += button;
+        return;
+    }
+    
     // if button is not an operator or = sign
     if (!operators.includes(button) && button != equal) {
         // if it is the first button clicked
@@ -41,10 +46,6 @@ function button_number(button) {
             firstNum = false;
         }
         else {
-            if (button == '(' || button == ')') {
-                box.innerText += button;
-                return;
-            }
             // return if the box value is 0
             if (box.innerText.length == 1 && box.innerText == 0) {
 
@@ -437,7 +438,7 @@ function keyReleased(e) {
         document.getElementById("backspace_btn").style.backgroundColor = "#666666";
     }
 }
-
+// Chức năng của nút Abs
 function Abs() {
     box = document.getElementById("box");
     var currentValue = parseFloat(box.innerText);

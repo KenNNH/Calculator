@@ -30,23 +30,23 @@ function button_number(button) {
         box.innerText += button;
         return;
     }
-    
-    // if button is not an operator or = sign
+
+    // xử lí nếu không phải là =
     if (!operators.includes(button) && button != equal) {
-        // if it is the first button clicked
+
         if (firstNum) {
-            // and it's a dot, show 0.
+
             if (button == dot) {
                 box.innerText = "0" + dot;
             }
-            // else clear box and show the number
+
             else {
                 box.innerText = button;
             }
             firstNum = false;
         }
         else {
-            // return if the box value is 0
+
             if (box.innerText.length == 1 && box.innerText == 0) {
 
                 if (button == dot) {
@@ -54,34 +54,34 @@ function button_number(button) {
                 }
                 return;
             }
-            // return if the box already has a dot and clicked button is a dot
+
             if (box.innerText.includes(dot) && button == dot) {
                 return;
             }
-            // maximum allowed numbers inputted are 20
+
             if (box.innerText.length == 20) {
                 return;
             }
 
-            // if pressed dot and box already has a - sign, show -0.
+
             if (button == dot && box.innerText == "-") {
                 box.innerText = "-0" + dot;
             }
-            // else append number
+
             else {
                 box.innerText += button;
             }
         }
     }
-    // if it's an operator or = sign
+
     else {
 
-        // return if operator is already pressed
+
         if (operator_value != null && button == operator_value) {
             return
         }
 
-        // show minus sign if it's the first value selected and finally return
+
         if (button == "-" && box.innerText == 0) {
             box.innerText = button;
             firstNum = false;
@@ -89,16 +89,16 @@ function button_number(button) {
             showSelectedOperator()
             return;
         }
-        // return if minus operator pressed and it's already printed on screen 
+
         else if (operators.includes(button) && box.innerText == "-") {
             return
         }
-        // return if minus operator pressed and history already has equal sign
+
         else if (button == "-" && operator_value == "-" && last_operation_history.innerText.includes("=")) {
             return
         }
 
-        // set value of operator if it's one
+
         if (operators.includes(button)) {
             if (typeof last_operator != "undefined" && last_operator != null) {
                 calc_operator = last_operator
@@ -120,26 +120,26 @@ function button_number(button) {
             showSelectedOperator()
         }
 
-        // add first number to numbers array and show it on history
+
         if (numbers.length == 0) {
             numbers.push(box.innerText)
             if (typeof last_operator != "undefined" && last_operator != null) {
                 last_operation_history.innerText = box.innerText + " " + last_operator
             }
         }
-        // rest of calculations
+
         else {
             if (numbers.length == 1) {
                 numbers[1] = box.innerText
             }
             var temp_num = box.innerText
 
-            // calculate total
+
             if (button == equal && calc_operator != null) {
                 var total = calculate(numbers[0], numbers[1], calc_operator)
                 box.innerText = total;
 
-                // append second number to history
+
                 if (!last_operation_history.innerText.includes("=")) {
                     last_operation_history.innerText += " " + numbers[1] + " ="
                 }
@@ -150,12 +150,12 @@ function button_number(button) {
                 operator_value = null
                 showSelectedOperator()
 
-                // replace first number of history with the value of total
+
                 var history_arr = last_operation_history.innerText.split(" ")
                 history_arr[0] = temp_num
                 last_operation_history.innerText = history_arr.join(" ")
             }
-            // update history with the value on screen and the pressed operator
+
             else if (calc_operator != null) {
                 last_operation_history.innerText = temp_num + " " + last_operator
                 calc_operator = button
@@ -166,7 +166,7 @@ function button_number(button) {
     }
 
 }
-// highlight operator button when selected
+// Đánh dấu tô đậm các toán tử khi được chọn
 function showSelectedOperator() {
 
     var elements = document.getElementsByClassName("operator");
@@ -189,7 +189,7 @@ function showSelectedOperator() {
     }
 }
 
-// function to calculate the result using two number and an operator
+// Hàm tính toán +-*/ đối với 2 số 
 function calculate(num1, num2, operator) {
     let total;
     if (operator === "+") {
@@ -208,17 +208,16 @@ function calculate(num1, num2, operator) {
     history.push(`${input} = ${result}`);
     updateHistory();
 
-    // if total is not integer, show maximum 12 decimal places
     if (!Number.isInteger(total)) {
         total = total.toPrecision(12);
     }
-    
+
     document.getElementById('box').innerText = total;
     return parseFloat(total);
 }
 
 
-// function to clear box and reset everything
+// Hàm nút clear
 function button_clear() {
     window.location.reload()
 }
@@ -237,7 +236,7 @@ function backspace_remove() {
 
     box.innerText = last_num
 
-    // show 0 zero if all characters on screen are removed
+
     if (box.innerText.length == 0) {
         box.innerText = 0
         firstNum = true
@@ -246,28 +245,28 @@ function backspace_remove() {
 }
 
 
-// function to change the sign of the number currently on screen
+// Hàm thay đổi + hoặc - trên 1 số
 function plus_minus() {
     box = document.getElementById("box");
 
-    // if any operator is already pressed
+
     if (typeof last_operator != "undefined") {
         if (numbers.length > 0) {
-            // if last button pressed is an operator
+
             if (operators.includes(last_button)) {
-                // if the displayed text is just a negative sign, replace it with a 0
+
                 if (box.innerText == "-") {
                     box.innerText = 0
                     firstNum = true
                     return
                 }
-                // if the displayed text is not a just a negative sign, replace it with a negative sign
+
                 else {
                     box.innerText = "-"
                     firstNum = false
                 }
             }
-            // if last button pressed is not an operator, change its sign
+
             else {
                 box.innerText = -box.innerText
 
@@ -282,7 +281,7 @@ function plus_minus() {
         return
     }
 
-    // if displayed text is 0, replace it with a negative sign
+
     if (box.innerText == 0) {
         box.innerText = "-"
         firstNum = false
@@ -291,7 +290,7 @@ function plus_minus() {
     box.innerText = -box.innerText
 }
 
-// function to calculate square root of the number currently on screen
+// Hàm tính căn bậc 2
 function square_root() {
     box = document.getElementById("box");
     var square_num = Math.sqrt(box.innerText)
@@ -299,7 +298,7 @@ function square_root() {
     numbers.push(square_num)
 }
 
-// function to calculate the division of 1 with the number currently on screen
+// Hàm div 1 số
 function division_one() {
     box = document.getElementById("box");
     var square_num = 1 / box.innerText
@@ -307,7 +306,7 @@ function division_one() {
     numbers.push(square_num)
 }
 
-// function to calculate the power of the number currently on screen
+// Hàm tính lũy thừa của số hiện có trên màn hình
 function power_of() {
     box = document.getElementById("box");
     var square_num = Math.pow(box.innerText, 2)
@@ -315,7 +314,7 @@ function power_of() {
     numbers.push(square_num)
 }
 
-// function to calculate the percentage of a number
+// Hàm tính tỷ lệ phần trăm của một số
 function calculate_percentage() {
     var elements = document.getElementsByClassName("operator");
     box = document.getElementById("box");
@@ -329,7 +328,7 @@ function calculate_percentage() {
         box.innerText = perc_value
         numbers.push(box.innerText)
 
-        // append second number to history
+
         if (!last_operation_history.innerText.includes("=")) {
             last_operation_history.innerText += " " + numbers[1] + " ="
         }
@@ -343,13 +342,13 @@ function calculate_percentage() {
     box.innerText = res
     operator_value = "="
 
-    // deselect operator if any selected
+
     for (var i = 0; i < elements.length; i++) {
         elements[i].style.backgroundColor = "#e68a00";
     }
 }
 
-// function to clear last number typed into the display
+// Hàm xóa số cuối cùng hiển thị trên cal
 function clear_entry() {
     box = document.getElementById("box");
 
@@ -365,7 +364,7 @@ function clear_entry() {
 document.addEventListener('keydown', keyPressed);
 document.addEventListener('keyup', keyReleased);
 
-// function to capture keydown events
+
 function keyPressed(e) {
     e.preventDefault()
     var equal = document.getElementById("equal_sign").value;
@@ -412,7 +411,7 @@ function keyPressed(e) {
     }
 }
 
-// function to capture keyup events
+
 function keyReleased(e) {
     if (key_combination['ControlLeft'] && key_combination['KeyV']) {
         navigator.clipboard.readText().then(text => {
@@ -433,7 +432,6 @@ function keyReleased(e) {
     }
     key_combination = []
     e.preventDefault()
-    // set the color of the backspace button back to its original
     if (e.key == "Backspace") {
         document.getElementById("backspace_btn").style.backgroundColor = "#666666";
     }
@@ -457,7 +455,7 @@ function setDisplay(value) {
 function memoryPlus() {
     // Lấy giá trị hiện tại của display và cập nhật trước khi gọi setDisplay
     let currentValue = document.getElementById('box').innerText;
-    setDisplay(currentValue); 
+    setDisplay(currentValue);
 
     // Thêm giá trị hiện tại vào bộ nhớ
     memory += display;
@@ -472,7 +470,7 @@ function memoryPlus() {
 function memoryMinus() {
     // Lấy giá trị hiện tại của display và cập nhật trước khi gọi setDisplay
     let currentValue = document.getElementById('box').innerText;
-    setDisplay(currentValue); 
+    setDisplay(currentValue);
 
     // Trừ giá trị hiện tại của display từ giá trị của memory
     memory -= display;
@@ -503,7 +501,7 @@ let history = [];
 function updateHistory() {
     const historyList = document.getElementById('history_list');
     historyList.innerHTML = '';
-    
+
 
     for (let i = history.length - 1; i >= 0; i--) {
         // document.getElementById('equal_sign').addEventListener('click', calculate);
@@ -511,7 +509,7 @@ function updateHistory() {
         listItem.textContent = history[i];
         historyList.appendChild(listItem);
         console.log(listItem);
-        
+
     }
 }
 
